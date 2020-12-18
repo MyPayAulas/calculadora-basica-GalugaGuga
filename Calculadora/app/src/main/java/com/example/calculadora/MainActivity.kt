@@ -1,8 +1,10 @@
 package com.example.calculadora
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.activity_historico.*
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
@@ -13,6 +15,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportActionBar!!.hide()
+
+            historico.setOnClickListener {
+                val intent = Intent(this, HistoricoActivityCustomizada::class.java)
+                intent.putExtra("testeVarString", "Historico")
+                intent.putExtra("testeVarInteiro", 55)
+
+                val historico = HistoricoCalculos(mutableListOf(Calculo("1+1","2")))
+                intent.putExtra("testeObjeto", historico)
+                startActivity(intent)
+            }
 
         zero.setOnClickListener { addExp("0",true) }
         one.setOnClickListener { addExp("1",true) }
@@ -65,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-        fun addExp(string: String, clearData: Boolean) {
+        private fun addExp(string: String, clearData: Boolean) {
 
         if(txt_resultado.text.isNotEmpty()) {
             expressao.text = ""
