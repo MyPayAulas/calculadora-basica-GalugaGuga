@@ -17,12 +17,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.hide()
 
             historico.setOnClickListener {
-                val intent = Intent(this, HistoricoActivityCustomizada::class.java)
-                intent.putExtra("testeVarString", "Historico")
-                intent.putExtra("testeVarInteiro", 55)
+                val intent = Intent(this, HistoricoRecyclerActivity::class.java)
 
-                val historico = HistoricoCalculos(mutableListOf(Calculo("1+1","2")))
-                intent.putExtra("testeObjeto", historico)
+                val historico = HistoricoCalculos(mutableListOf())
+                intent.putExtra("historico", historico)
                 startActivity(intent)
             }
 
